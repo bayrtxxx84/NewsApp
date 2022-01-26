@@ -19,15 +19,18 @@
         <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/layout/activity_principal.xml" value="0.21238937336105165" />
         <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/layout/fragment_carrito.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/layout/fragment_listar.xml" value="0.2803539728365882" />
-        <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/layout/fragment_one_news.xml" value="0.5692035206076185" />
-        <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/layout/item_news_list.xml" value="0.5045731707317073" />
+        <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/layout/fragment_one_news.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/layout/news_items.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/menu/bottom_bar_menu.xml" value="0.27708333333333335" />
-        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/item_news_list.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/activity_item.xml" value="0.45315161839863716" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/activity_login.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/activity_principal.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_listar.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_one_news.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/news_items.xml" value="0.27708333333333335" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

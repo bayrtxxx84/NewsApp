@@ -1,5 +1,6 @@
 package com.example.adoptame.presentacion
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -29,7 +30,8 @@ class PrincipalActivity : AppCompatActivity() {
                     true
                 }
                 R.id.itComprar -> {
-                    lstFragments.add(R.id.itComprar)
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.itListar -> {
@@ -54,12 +56,8 @@ class PrincipalActivity : AppCompatActivity() {
         super.onBackPressed()
         if (lstFragments.isNotEmpty()) {
             lstFragments.removeLast()
-            binding.bottomNavigation.menu.findItem(lstFragments.last()).setChecked(true)
+            binding.bottomNavigation.menu.findItem(lstFragments.last()).isChecked = true
         }
-    }
-
-    fun tips() {
-
     }
 
 }

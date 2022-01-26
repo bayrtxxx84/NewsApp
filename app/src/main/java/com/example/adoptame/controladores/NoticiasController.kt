@@ -8,5 +8,4 @@ class NoticiasController {
     fun getOneNews(): News {
         return NoticiasBL().getOneNews()
     }
-
 }

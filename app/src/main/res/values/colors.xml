@@ -12,6 +12,7 @@
     <color name="LoginBackground">#282b3a</color>
     <color name="LoginButton">#fc3c3e</color>
     <color name="LoginText">#e3e6ed</color>
+    <color name="c1">#d1d1d1</color>
     <color name="LoginHighlight">#c5c5c5</color>
     <color name="LoginForgot">#61606e</color>
 
