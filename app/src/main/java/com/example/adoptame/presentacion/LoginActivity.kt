@@ -10,7 +10,6 @@ import android.widget.Toast
 import com.example.adoptame.R
 import com.example.adoptame.controladores.UsuarioController
 import com.example.adoptame.databinding.ActivityLoginBinding
-import com.example.adoptame.entidades.News
 
 class LoginActivity : AppCompatActivity() {
 

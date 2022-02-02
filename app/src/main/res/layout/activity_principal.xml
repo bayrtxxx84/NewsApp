@@ -41,11 +41,13 @@
         android:layout_height="78dp"
         android:theme="@style/bottomNavBar"
         app:itemIconTint="@drawable/ic_btnavigation"
-        app:labelVisibilityMode="selected"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_bar_menu" />
+        app:menu="@menu/bottom_bar_menu" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

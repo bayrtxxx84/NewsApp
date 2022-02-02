@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.adoptame.controladores.ListNewsAdapter
 import com.example.adoptame.databinding.FragmentListarBinding
-import com.example.adoptame.entidades.News
-import com.example.adoptame.logica.NoticiasBL
-import com.squareup.picasso.Picasso
+import com.example.adoptame.database.entidades.NewsEntity
+import com.example.adoptame.logica.NewsBL
+import kotlinx.coroutines.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
@@ -25,23 +25,33 @@ class ListarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentListarBinding.inflate(inflater, container, false)
-
-        loadListNews(NoticiasBL().getNewsList())
-
+        binding =
+            FragmentListarBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
-    fun loadListNews(items: List<News>) {
+
+    override fun onStart() {
+        super.onStart()
+        binding.progressBar.visibility = View.VISIBLE
+        lifecycleScope.launch(Dispatchers.Main) {
+            val items = withContext(Dispatchers.IO) {
+                NewsBL().getNewsList()
+            }
+            binding.progressBar.visibility = View.INVISIBLE
+            loadListNews(items)
+        }
+    }
+
+    private fun loadListNews(newsEntities: List<NewsEntity>) {
         binding.listRecyclerView.layoutManager =
             LinearLayoutManager(binding.listRecyclerView.context)
-        binding.listRecyclerView.adapter = ListNewsAdapter(items) { getNewsItem(it) }
+        binding.listRecyclerView.adapter = ListNewsAdapter(newsEntities) { getNewsItem(it) }
     }
 
-    fun getNewsItem(news: News) {
+    private fun getNewsItem(newsEntity: NewsEntity) {
         var i = Intent(activity, ItemActivity::class.java)
-        val jsonString = Json.encodeToString(news)
+        val jsonString = Json.encodeToString(newsEntity)
         i.putExtra("noticia", jsonString)
         startActivity(i)
     }

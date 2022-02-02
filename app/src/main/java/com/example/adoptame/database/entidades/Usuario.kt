@@ -1,4 +1,4 @@
-package com.example.adoptame.entidades
+package com.example.adoptame.database.entidades
 
 import java.util.*
 

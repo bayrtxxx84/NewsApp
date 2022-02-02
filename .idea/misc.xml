@@ -22,12 +22,18 @@
         <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/layout/fragment_one_news.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/layout/news_items.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/torre/AndroidStudioProjects/Adoptame/app/src/main/res/menu/bottom_bar_menu.xml" value="0.27708333333333335" />
-        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/activity_item.xml" value="0.45315161839863716" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/drawable/ic_favorite_12.xml" value="0.1335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/drawable/ic_favorite_24.xml" value="0.203" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/drawable/ic_favorite_border_12.xml" value="0.1335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/activity_item.xml" value="0.2803539728365882" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/activity_login.xml" value="0.27708333333333335" />
-        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/activity_principal.xml" value="0.27708333333333335" />
-        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_listar.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/activity_principal.xml" value="0.1" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_borrar.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_fav_news.xml" value="0.17592592592592593" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_listar.xml" value="0.1" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_one_news.xml" value="0.27708333333333335" />
-        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/news_items.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/news_items.xml" value="0.1" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/menu/bottom_bar_menu.xml" value="0.17222222222222222" />
       </map>
     </option>
   </component>
