@@ -9,10 +9,10 @@ import kotlinx.serialization.Serializable
 data class NewsEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val author: String,
-    val title: String,
-    val desc: String,
-    val img: String
+    val author: String?,
+    val title: String?,
+    val desc: String?,
+    val img: String?
 )
 
 

@@ -5,7 +5,7 @@ import com.example.adoptame.logica.NewsBL
 
 class NewsController {
 
-    fun getOneNews(): NewsEntity {
+    suspend fun getOneNews(): NewsEntity {
         return NewsBL().getOneNews()
     }
 

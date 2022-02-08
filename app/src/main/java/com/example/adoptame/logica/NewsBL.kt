@@ -8,12 +8,11 @@ import com.example.adoptame.utils.Adoptame
 
 class NewsBL() {
 
-    fun getNewsList(): List<NewsEntity> {
-        Thread.sleep(2000)
+    suspend fun getNewsList(): List<NewsEntity> {
         return NewsUseCase().getAllNews()
     }
 
-    fun getOneNews(): NewsEntity {
+    suspend fun getOneNews(): NewsEntity {
         val r = (0..3).random()
         return NewsUseCase().getAllNews()[r]
     }
