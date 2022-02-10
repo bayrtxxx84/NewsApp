@@ -48,7 +48,6 @@ class ItemActivity : AppCompatActivity() {
 
         lifecycleScope.launch(Dispatchers.Main) {
             fav = withContext(Dispatchers.IO) { NewsBL().checkIsSaved(newsEntity.id) }
-
             if (fav) {
                 binding.floatingActionButtonItem.setImageResource(R.drawable.ic_favorite_24)
             }
@@ -56,7 +55,6 @@ class ItemActivity : AppCompatActivity() {
     }
 
     private fun saveFavNews(news: NewsEntity?) {
-
         if (news != null) {
             if (!fav) {
                 lifecycleScope.launch {

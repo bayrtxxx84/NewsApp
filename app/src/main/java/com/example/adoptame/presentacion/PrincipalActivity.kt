@@ -1,6 +1,7 @@
 package com.example.adoptame.presentacion
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -48,7 +49,6 @@ class PrincipalActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
     }
 
     override fun onBackPressed() {
@@ -72,12 +72,20 @@ class PrincipalActivity : AppCompatActivity() {
             if (toChangeFragment != null) {
                 if (currentFragment != toChangeFragment) {
                     addStack = true
+                    ft.setCustomAnimations(
+                        R.anim.fade_in,
+                        R.anim.fade_out
+                    );
                     ft.hide(currentFragment).show(toChangeFragment)
                     toChangeFragment.onResume()
                 }
             } else {
                 if (fragment != null) {
                     addStack = true
+                    ft.setCustomAnimations(
+                        R.anim.fade_in,
+                        R.anim.fade_out
+                    );
                     ft.hide(currentFragment)
                         .add(binding.FrameLayout.id, fragment, tagToChange.toString())
                 }
@@ -94,6 +102,12 @@ class PrincipalActivity : AppCompatActivity() {
             ft.addToBackStack(tagToChange.toString())
             lstFragments.add(tagToChange)
         }
+    }
+
+    fun getStringSharedPreference() {
+        var editor = Adoptame.getShareDB()
+        var txt = editor.getString("name_user", "")
+        binding.textView.text = txt.toString()
     }
 }
 

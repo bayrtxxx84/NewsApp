@@ -1,4 +1,4 @@
-package com.example.adoptame.data.api.entidades
+package com.example.adoptame.data.api.entidades.newsApi
 
 import com.example.adoptame.database.entidades.NewsEntity
 

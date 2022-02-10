@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="295dp">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -42,14 +42,14 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButtonItem"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="bottom|right"
                 android:layout_marginTop="160dp"
                 android:layout_marginEnd="16dp"
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:elevation="4dp"
-                app:fabCustomSize="52dp"
+                app:fabCustomSize="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2"
                 app:srcCompat="@drawable/ic_favorite_border_12"
@@ -66,9 +66,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,8 +78,8 @@
                 android:id="@+id/txtTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
                 android:layout_marginStart="14dp"
+                android:layout_marginRight="50dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"

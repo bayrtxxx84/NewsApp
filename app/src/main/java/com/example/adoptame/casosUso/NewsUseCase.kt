@@ -1,29 +1,48 @@
 package com.example.adoptame.casosUso
 
-import android.content.Context
 import com.example.adoptame.data.api.RetrofitAPI
-import com.example.adoptame.data.api.entidades.toNewsEntity
+import com.example.adoptame.data.api.entidades.newsApi.toNewsEntity
+import com.example.adoptame.data.api.entidades.newsCatcher.toNewsEntity
 import com.example.adoptame.data.api.service.NewsService
 import com.example.adoptame.database.entidades.NewsEntity
 import com.example.adoptame.utils.Adoptame
+import com.example.adoptame.utils.EnumNews
 
 class NewsUseCase {
 
-    suspend fun getAllNews(): List<NewsEntity> {
-        var resp: MutableList<NewsEntity> = ArrayList<NewsEntity>()
+    suspend fun getAllNewsApi(
+        category: String,
+        page: Int,
+    ): List<NewsEntity> {
+
+        var resp: List<NewsEntity> = ArrayList<NewsEntity>()
+
         val service = RetrofitAPI.getNewsApi().create(NewsService::class.java)
-        val call =
-            service.getAllNewsByCountryAndCategory("top-headlines?country=us&category=business&apiKey=53525cdf7be148feac311794803b6c78")
-
+        val call = service.getAllNewsByCategoryPage(category, page, "us")
         resp = if (call.isSuccessful) {
-            val body = call.body()
-            body!!.articles.map {
+            return call.body()!!.articles.map {
                 it.toNewsEntity()
-            } as MutableList<NewsEntity>
+            }
+        } else (ArrayList<NewsEntity>())
+        return resp
+    }
 
-        } else {
-            ArrayList<NewsEntity>()
-        }
+
+    suspend fun getAllNewsCatchApi(
+        query: String,
+        page: Int,
+    ): List<NewsEntity> {
+        var resp: List<NewsEntity> = ArrayList<NewsEntity>()
+        val service = RetrofitAPI.getNewsCatcher().create(NewsService::class.java)
+        val s = "search?q=$query&page=$page"
+        println(s)
+        val call = service.getAllCatchNewsCriterioPage(s)
+        println(call.code())
+        resp = if (call.isSuccessful) {
+            return call.body()!!.articles.map {
+                it.toNewsEntity()
+            }
+        } else (ArrayList<NewsEntity>())
         return resp
     }
 
@@ -43,5 +62,4 @@ class NewsUseCase {
     suspend fun getOneNews(id: Int): NewsEntity {
         return Adoptame.getDatabase().newsDao().getNewsById(id)
     }
-
 }
