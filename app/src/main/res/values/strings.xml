@@ -5,4 +5,10 @@
     <string name="hello_blank_fragment">Las noticias del día</string>
     <string name="ListarProductos">Noticias del mundo</string>
     <string name="CarritoProductos">Noticias favoritas</string>
+
+    <string name="tab_1">Negocios</string>
+    <string name="tab_2">Entretenimiento</string>
+    <string name="tab_3">General</string>
+    <string name="tab_4">Salud</string>
+    <string name="tab_5">Ciencias</string>
 </resources>

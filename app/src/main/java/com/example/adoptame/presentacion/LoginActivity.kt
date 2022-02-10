@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.adoptame.R
 import com.example.adoptame.controladores.UsuarioController
 import com.example.adoptame.databinding.ActivityLoginBinding
+import com.example.adoptame.utils.Adoptame
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,6 +25,8 @@ class LoginActivity : AppCompatActivity() {
         binding.btnForget.setOnClickListener() {
             Toast.makeText(this, "Pantalla en construcción", Toast.LENGTH_SHORT).show()
         }
+
+        getStringSharedPreference()
 
         binding.btnLogin.setOnClickListener()
         {
@@ -45,8 +49,11 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnForget.setOnClickListener() {
-            var f = { x: Int, y: Int -> x + y }
-            println(funcionLambda(5, 5, f))
+            saveSharedPreference()
+        }
+
+        binding.txtSignUp.setOnClickListener() {
+            getStringSharedPreference()
         }
     }
 
@@ -57,8 +64,24 @@ class LoginActivity : AppCompatActivity() {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
+    fun saveLocalSharedPreferences() {
+        val spLocal = this.getPreferences(Context.MODE_PRIVATE)
+    }
 
-    fun funcionLambda(x: Int, y: Int, myfun: (Int, Int) -> Int) : Int{
-         return myfun(x, y)
+    fun saveSharedPreference() {
+        var editor = Adoptame.getShareDB().edit()
+        editor.putString("name_user", binding.txtEmail.text.toString())
+        editor.commit()
+    }
+
+    fun getStringSharedPreference() {
+        var editor = Adoptame.getShareDB()
+        var txt = editor.getString("name_user", "")
+        println(txt)
+        if (!txt.isNullOrBlank()) {
+            editor.edit().clear().commit()
+            startActivity(Intent(this, PrincipalActivity::class.java))
+
+        }
     }
 }

@@ -1,21 +1,18 @@
 package com.example.adoptame.logica
 
-import android.content.Context
 import com.example.adoptame.casosUso.NewsUseCase
-import com.example.adoptame.database.NewsDataBase
+import com.example.adoptame.controladores.NewsController
 import com.example.adoptame.database.entidades.NewsEntity
-import com.example.adoptame.utils.Adoptame
+import com.example.adoptame.utils.EnumNews
 
 class NewsBL() {
 
-    fun getNewsList(): List<NewsEntity> {
-        Thread.sleep(2000)
-        return NewsUseCase().getAllNews()
+    suspend fun getNewsList(category: String, page: Int): List<NewsEntity> {
+        return NewsUseCase().getAllNewsApi(category, page)
     }
 
-    fun getOneNews(): NewsEntity {
-        val r = (0..3).random()
-        return NewsUseCase().getAllNews()[r]
+    suspend fun getNewsCatchList(query: String, page: Int): List<NewsEntity> {
+        return NewsUseCase().getAllNewsCatchApi(query, page)
     }
 
     suspend fun checkIsSaved(id: Int): Boolean {
