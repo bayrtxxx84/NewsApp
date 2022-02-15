@@ -64,10 +64,6 @@ class LoginActivity : AppCompatActivity() {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    fun saveLocalSharedPreferences() {
-        val spLocal = this.getPreferences(Context.MODE_PRIVATE)
-    }
-
     fun saveSharedPreference() {
         var editor = Adoptame.getShareDB().edit()
         editor.putString("name_user", binding.txtEmail.text.toString())

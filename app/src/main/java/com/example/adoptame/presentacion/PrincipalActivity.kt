@@ -1,17 +1,11 @@
 package com.example.adoptame.presentacion
 
-import android.app.Application
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.example.adoptame.R
-import com.example.adoptame.database.NewsDataBase
 import com.example.adoptame.databinding.ActivityPrincipalBinding
-import com.example.adoptame.utils.Adoptame
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -39,6 +33,10 @@ class PrincipalActivity : AppCompatActivity() {
                     changeFragment(R.id.itCarrito, FavNewsFragment())
                     true
                 }
+                R.id.itSettings -> {
+                    changeFragment(R.id.itSettings, PreferencesFragment())
+                    true
+                }
                 R.id.itComprar -> {
                     val intent = Intent(this, LoginActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -57,6 +55,12 @@ class PrincipalActivity : AppCompatActivity() {
             lstFragments.removeLast()
             binding.bottomNavigation.menu.findItem(lstFragments.last()).isChecked = true
         }
+    }
+
+    private fun changeFragment1(int: Int, fragm: Fragment) {
+        val ff = supportFragmentManager.beginTransaction()
+        ff.replace(binding.FrameLayout.id, fragm)
+        ff.commit()
     }
 
     private fun changeFragment(tagToChange: Int, fragment: Fragment? = null) {
@@ -102,12 +106,6 @@ class PrincipalActivity : AppCompatActivity() {
             ft.addToBackStack(tagToChange.toString())
             lstFragments.add(tagToChange)
         }
-    }
-
-    fun getStringSharedPreference() {
-        var editor = Adoptame.getShareDB()
-        var txt = editor.getString("name_user", "")
-        binding.textView.text = txt.toString()
     }
 }
 

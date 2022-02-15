@@ -5,15 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.adoptame.R
 import com.example.adoptame.controladores.ListNewsAdapter
 import com.example.adoptame.controladores.NewsController
 import com.example.adoptame.database.entidades.NewsEntity
 import com.example.adoptame.databinding.FragmentListarBinding
-import com.example.adoptame.logica.NewsBL
+import com.example.adoptame.utils.Adoptame
 import com.example.adoptame.utils.EnumNews
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.*
@@ -24,7 +26,7 @@ import kotlinx.serialization.json.Json
 class ListarFragment : Fragment() {
 
     private lateinit var binding: FragmentListarBinding
-    private var category: String = EnumNews.SelectionCategory.business.toString()
+    private var category: String = "business"
     private var page: Int = 1
 
     override fun onCreateView(
@@ -44,7 +46,7 @@ class ListarFragment : Fragment() {
             object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     val idCat = tab?.position!!
-                    category = EnumNews.SelectionCategory.fromPosition(idCat)
+                    category = EnumNews.CategoryNews.fromPosition(idCat)
                     clear()
                     loadNews(category, 1)
                 }
@@ -74,20 +76,41 @@ class ListarFragment : Fragment() {
         binding.listRecyclerView.clearAnimation()
         binding.progressBar.visibility = View.VISIBLE
 
-        lifecycleScope.launch(Dispatchers.Main)
-        {
-            val items = withContext(Dispatchers.IO) {
-                NewsController().getNews(
-                    category,
-                    page,
-                    EnumNews.APITypes.fromName("catcherapi")
-                )
-            }
+        var keys = ArrayList<String>()
+        if (Adoptame.getPrefseDB()
+                .getBoolean(activity?.resources?.getResourceEntryName(R.string.catchnewsapi), false)
+        ) {
+            keys.add(R.string.catchnewsapi.toString())
+        }
+        if (Adoptame.getPrefseDB()
+                .getBoolean(activity?.resources?.getResourceEntryName(R.string.newsapi), false)
+        ) {
+            keys.add(R.string.newsapi.toString())
+        }
 
-            binding.listRecyclerView.layoutManager =
-                LinearLayoutManager(binding.listRecyclerView.context)
-            binding.listRecyclerView.adapter = ListNewsAdapter(items) { getNewsItem(it) }
-            binding.progressBar.visibility = View.GONE
+        if (keys.isEmpty()) {
+            Toast.makeText(
+                binding.listParentLayout.context,
+                "No hay fuentes de información seleccionadas",
+                Toast.LENGTH_SHORT
+            ).show()
+            clear()
+        } else {
+            lifecycleScope.launch(Dispatchers.Main)
+            {
+                val items = withContext(Dispatchers.IO) {
+                    NewsController().getNews(
+                        category,
+                        page,
+                        keys
+                    )
+                }
+
+                binding.listRecyclerView.layoutManager =
+                    LinearLayoutManager(binding.listRecyclerView.context)
+                binding.listRecyclerView.adapter = ListNewsAdapter(items) { getNewsItem(it) }
+                binding.progressBar.visibility = View.GONE
+            }
         }
     }
 

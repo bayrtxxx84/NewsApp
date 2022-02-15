@@ -12,36 +12,48 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/TabLayout"
+        style="@style/RoundedTabLayoutStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:tabTextColor="@color/LoginForgot"
         app:tabMode="scrollable">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="business"
             android:text="@string/tab_1" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="entertainment"
             android:text="@string/tab_2" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="general"
             android:text="@string/tab_3" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="general1"
             android:text="@string/tab_4" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="general2"
             android:text="@string/tab_5" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="general3"
+            android:text="@string/tab_6" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -67,8 +79,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        app:indicatorColor="@android:color/holo_orange_dark"
         android:theme="@style/Widget.MaterialComponents.CircularProgressIndicator.Medium"
+        app:indicatorColor="@android:color/holo_orange_dark"
         app:layout_constraintBaseline_toBottomOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

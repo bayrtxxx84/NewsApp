@@ -15,7 +15,7 @@ interface NewsService {
     suspend fun getAllNewsByCategoryPage(
         @Query("category") category: String,
         @Query("page") page: Int,
-        @Query("apikey") apikey: String = RetrofitAPI.API_NEWS_API
+        @Query("apikey") apikey: String = RetrofitAPI.API_NEWS_API,
     ): Response<NewsApiEntity>
 
 

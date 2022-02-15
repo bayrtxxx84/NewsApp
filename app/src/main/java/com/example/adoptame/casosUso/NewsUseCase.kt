@@ -6,7 +6,6 @@ import com.example.adoptame.data.api.entidades.newsCatcher.toNewsEntity
 import com.example.adoptame.data.api.service.NewsService
 import com.example.adoptame.database.entidades.NewsEntity
 import com.example.adoptame.utils.Adoptame
-import com.example.adoptame.utils.EnumNews
 
 class NewsUseCase {
 
@@ -15,11 +14,9 @@ class NewsUseCase {
         page: Int,
     ): List<NewsEntity> {
 
-        var resp: List<NewsEntity> = ArrayList<NewsEntity>()
-
         val service = RetrofitAPI.getNewsApi().create(NewsService::class.java)
-        val call = service.getAllNewsByCategoryPage(category, page, "us")
-        resp = if (call.isSuccessful) {
+        val call = service.getAllNewsByCategoryPage(category, page)
+        val resp = if (call.isSuccessful) {
             return call.body()!!.articles.map {
                 it.toNewsEntity()
             }
@@ -32,13 +29,12 @@ class NewsUseCase {
         query: String,
         page: Int,
     ): List<NewsEntity> {
-        var resp: List<NewsEntity> = ArrayList<NewsEntity>()
+
         val service = RetrofitAPI.getNewsCatcher().create(NewsService::class.java)
         val s = "search?q=$query&page=$page"
-        println(s)
         val call = service.getAllCatchNewsCriterioPage(s)
         println(call.code())
-        resp = if (call.isSuccessful) {
+        val resp = if (call.isSuccessful) {
             return call.body()!!.articles.map {
                 it.toNewsEntity()
             }

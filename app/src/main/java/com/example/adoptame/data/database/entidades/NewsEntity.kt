@@ -12,7 +12,7 @@ data class NewsEntity(
     val author: String?,
     val title: String?,
     val desc: String?,
-    val img: String?
+    var img: String?
 )
  {
     init {

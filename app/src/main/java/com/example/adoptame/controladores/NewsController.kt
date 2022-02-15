@@ -1,18 +1,33 @@
 package com.example.adoptame.controladores
 
+import com.example.adoptame.R
 import com.example.adoptame.database.entidades.NewsEntity
 import com.example.adoptame.logica.NewsBL
-import com.example.adoptame.utils.EnumNews
 
 class NewsController {
 
-    suspend fun getNews(category: String, page: Int, apiType: EnumNews.APITypes): List<NewsEntity> {
-        return when (apiType) {
-            EnumNews.APITypes.NewsApi ->
-                NewsBL().getNewsList(category.toString(), page)
-            EnumNews.APITypes.NewsCatcherApi ->
-                NewsBL().getNewsCatchList(category.toString(), page)
+    suspend fun getNews(
+        category: String,
+        page: Int,
+        apiType: List<String>
+    ): List<NewsEntity> {
+        var ret: ArrayList<NewsEntity> = ArrayList<NewsEntity>()
+        apiType.forEach {
+            val item = when (it) {
+                R.string.newsapi.toString() -> {
+                    NewsBL().getNewsList(category.toString(), page)
+                }
+                R.string.catchnewsapi.toString() -> {
+                    NewsBL().getNewsCatchList(category.toString(), page)
+                }
+                else -> {
+                    listOf<NewsEntity>()
+                }
+            }
+            ret.addAll(item)
         }
+        ret.shuffle()
+        return ret
     }
 
     suspend fun saveFavNews(news: NewsEntity) {

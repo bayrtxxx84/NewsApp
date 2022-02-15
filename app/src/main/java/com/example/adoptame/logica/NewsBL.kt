@@ -1,9 +1,7 @@
 package com.example.adoptame.logica
 
 import com.example.adoptame.casosUso.NewsUseCase
-import com.example.adoptame.controladores.NewsController
 import com.example.adoptame.database.entidades.NewsEntity
-import com.example.adoptame.utils.EnumNews
 
 class NewsBL() {
 
@@ -17,7 +15,7 @@ class NewsBL() {
 
     suspend fun checkIsSaved(id: Int): Boolean {
         val n = NewsUseCase().getOneNews(id)
-        return (n != null)
+        return n != null
     }
 
     suspend fun getFavoritesNews(): List<NewsEntity> {
