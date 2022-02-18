@@ -8,6 +8,7 @@ import com.example.adoptame.controladores.NewsController
 import com.example.adoptame.databinding.ActivityItemBinding
 import com.example.adoptame.database.entidades.NewsEntity
 import com.example.adoptame.logica.NewsBL
+import com.example.adoptame.utils.Adoptame
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,6 +38,11 @@ class ItemActivity : AppCompatActivity() {
         binding.floatingActionButtonItem.setOnClickListener() {
             saveFavNews(n)
         }
+
+        var db = Adoptame.getPrefsDB()
+        println("Clave ingresada ${db.getBoolean("newsApi", false)}")
+        println("Clave edit_text_preference_1 ${db.getString("edit_text_preference_1", "")}")
+        println("Clave openNews ${db.getBoolean("openNews", true)}")
     }
 
 

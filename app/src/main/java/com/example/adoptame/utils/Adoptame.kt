@@ -23,7 +23,7 @@ class Adoptame : Application() {
             return dbShare
         }
 
-        fun getPrefseDB(): SharedPreferences {
+        fun getPrefsDB(): SharedPreferences {
             return dbPreferences
         }
 
@@ -35,7 +35,6 @@ class Adoptame : Application() {
             .build()
 
         dbShare = applicationContext.getSharedPreferences("prefsData", Context.MODE_PRIVATE)
-
         dbPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     }
 }

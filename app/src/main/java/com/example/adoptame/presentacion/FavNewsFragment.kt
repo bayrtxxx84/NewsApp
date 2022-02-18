@@ -3,14 +3,12 @@ package com.example.adoptame.presentacion
 import android.R
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenResumed
-import androidx.lifecycle.whenStarted
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.adoptame.controladores.ListNewsAdapter
 import com.example.adoptame.database.entidades.NewsEntity
@@ -25,8 +23,7 @@ class FavNewsFragment : Fragment() {
 
     private lateinit var binding: FragmentFavNewsBinding
     private var job: Job? = null
-
-    private val TAG: String = "UCE"
+    private var items = ArrayList<NewsEntity>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,15 +33,55 @@ class FavNewsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrBlank()) {
+                    var itemsFiltered = items.filter {
+                        it.title.toString().contains(query)
+                    }
+                    binding.listRecyclerViewFav.adapter =
+                        ListNewsAdapter(itemsFiltered) { getNewsItem(it) }
+                    binding.listRecyclerViewFav.layoutManager =
+                        LinearLayoutManager(binding.listRecyclerViewFav.context)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean = true
+
+        })
+
+        binding.searchView.setOnCloseListener {
+            onStart()
+            binding.searchView.visibility = View.GONE
+            false
+        }
+
+        binding.floatingActionButton.setOnClickListener() {
+            val visible = binding.searchView.visibility
+
+            if (visible == View.GONE) {
+                binding.searchView.visibility = View.VISIBLE
+                binding.searchView.setQuery("", true);
+                binding.searchView.isFocusable = true;
+                binding.searchView.isIconified = false;
+                binding.searchView.requestFocusFromTouch();
+            }
+        }
+
+    }
+
+    override fun onStart() {
         super.onStart()
         binding.progressBarFav.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.Main) {
-            val items = withContext(Dispatchers.IO) {
+            items = withContext(Dispatchers.IO) {
                 NewsBL().getFavoritesNews()
-            }
+            } as ArrayList<NewsEntity>
             binding.listRecyclerViewFav.adapter =
                 ListNewsAdapter(items) { getNewsItem(it) }
             binding.listRecyclerViewFav.layoutManager =

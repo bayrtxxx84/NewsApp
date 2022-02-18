@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -77,12 +78,12 @@ class ListarFragment : Fragment() {
         binding.progressBar.visibility = View.VISIBLE
 
         var keys = ArrayList<String>()
-        if (Adoptame.getPrefseDB()
+        if (Adoptame.getPrefsDB()
                 .getBoolean(activity?.resources?.getResourceEntryName(R.string.catchnewsapi), false)
         ) {
             keys.add(R.string.catchnewsapi.toString())
         }
-        if (Adoptame.getPrefseDB()
+        if (Adoptame.getPrefsDB()
                 .getBoolean(activity?.resources?.getResourceEntryName(R.string.newsapi), false)
         ) {
             keys.add(R.string.newsapi.toString())
