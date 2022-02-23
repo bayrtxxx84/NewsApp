@@ -2,22 +2,15 @@ package com.example.adoptame.utils
 
 class EnumNews {
 
-    enum class APITypes(val nameApi: String) {
-        NewsApi("newsapi"), NewsCatcherApi("catcherapi");
+    enum class CategoryNews {
+        business, entertainment, general, health, science, technology, sports;
 
         companion object {
-            fun fromName(name: String) = APITypes.values().first() { it.nameApi == name }
-        }
-    }
-
-    enum class SelectionCategory {
-        business, entertainment, general, health, science, sports, technology;
-
-        companion object {
-            fun fromPosition(pos: Int) = SelectionCategory.values().firstOrNull {
+            fun fromPosition(pos: Int) = CategoryNews.values().firstOrNull {
                 it.ordinal == pos
             }.toString()
         }
 
     }
+
 }

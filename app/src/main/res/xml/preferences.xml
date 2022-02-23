@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Preference
+        app:key="buildVersion"
+        app:summary="1.0.0"
+        app:title="Versión de compilación" />
+    <PreferenceCategory android:title="Fuente de noticias">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/catchnewsapi"
+            android:title="@string/catchnewsapi" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/newsapi"
+            android:title="@string/newsapi" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

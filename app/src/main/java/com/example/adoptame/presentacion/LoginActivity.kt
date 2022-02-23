@@ -8,7 +8,11 @@ import android.text.Editable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.adoptame.R
+import com.example.adoptame.controladores.NewsController
 import com.example.adoptame.controladores.UsuarioController
 import com.example.adoptame.databinding.ActivityLoginBinding
 import com.example.adoptame.utils.Adoptame
@@ -16,6 +20,8 @@ import com.example.adoptame.utils.Adoptame
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+
+    private val newsViewModel: NewsController by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +31,6 @@ class LoginActivity : AppCompatActivity() {
         binding.btnForget.setOnClickListener() {
             Toast.makeText(this, "Pantalla en construcción", Toast.LENGTH_SHORT).show()
         }
-
-        getStringSharedPreference()
 
         binding.btnLogin.setOnClickListener()
         {
@@ -48,40 +52,16 @@ class LoginActivity : AppCompatActivity() {
             hiddenIME(binding.root)
         }
 
-        binding.btnForget.setOnClickListener() {
-            saveSharedPreference()
-        }
+        newsViewModel.isLoading.observe(this, Observer {
+            binding.title.text = it.toString()
+        })
 
-        binding.txtSignUp.setOnClickListener() {
-            getStringSharedPreference()
-        }
     }
 
-
-    fun hiddenIME(view: View) {
+    private fun hiddenIME(view: View) {
         val imm =
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    fun saveLocalSharedPreferences() {
-        val spLocal = this.getPreferences(Context.MODE_PRIVATE)
-    }
-
-    fun saveSharedPreference() {
-        var editor = Adoptame.getShareDB().edit()
-        editor.putString("name_user", binding.txtEmail.text.toString())
-        editor.commit()
-    }
-
-    fun getStringSharedPreference() {
-        var editor = Adoptame.getShareDB()
-        var txt = editor.getString("name_user", "")
-        println(txt)
-        if (!txt.isNullOrBlank()) {
-            editor.edit().clear().commit()
-            startActivity(Intent(this, PrincipalActivity::class.java))
-
-        }
-    }
 }
