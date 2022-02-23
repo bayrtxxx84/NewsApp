@@ -2,10 +2,7 @@ package com.example.adoptame.presentacion
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.fragment.app.Fragment
 import com.example.adoptame.R
 import com.example.adoptame.databinding.ActivityPrincipalBinding
@@ -28,16 +25,16 @@ class PrincipalActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.itListar -> {
                     binding.textView.text = getString(R.string.ListarProductos)
-                    changeFragment(R.id.itListar, ListarFragment())
+                    changeFragment1(R.id.itListar, ListarFragment())
                     true
                 }
                 R.id.itCarrito -> {
                     binding.textView.text = getString(R.string.CarritoProductos)
-                    changeFragment(R.id.itCarrito, FavNewsFragment())
+                    changeFragment1(R.id.itCarrito, FavNewsFragment())
                     true
                 }
                 R.id.itSettings -> {
-                    changeFragment(R.id.itSettings, PreferencesFragment())
+                    changeFragment1(R.id.itSettings, PreferencesFragment())
                     true
                 }
                 R.id.itComprar -> {

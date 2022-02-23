@@ -1,30 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <PreferenceCategory android:title="Fuentes de datos">
-
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Preference
+        app:key="buildVersion"
+        app:summary="1.0.0"
+        app:title="Versión de compilación" />
+    <PreferenceCategory android:title="Fuente de noticias">
         <CheckBoxPreference
             android:defaultValue="true"
-            android:key="newsApi"
-            android:title="News Api" />
+            android:key="@string/catchnewsapi"
+            android:title="@string/catchnewsapi" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="catchNewsApi"
-            android:title="Catch news Api" />
-
-        <EditTextPreference
-            android:defaultValue="10"
-            android:key="edit_text_preference_1"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:title="Cantidad de item a mostrar" />
-
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="openNews"
-            android:title="Ingresar a la noticia" />
-
+            android:key="@string/newsapi"
+            android:title="@string/newsapi" />
     </PreferenceCategory>
-
 
 </PreferenceScreen>

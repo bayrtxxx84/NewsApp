@@ -2,13 +2,18 @@ package com.example.adoptame.presentacion
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelStore
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adoptame.R
@@ -29,6 +34,8 @@ class ListarFragment : Fragment() {
     private lateinit var binding: FragmentListarBinding
     private var category: String = "business"
     private var page: Int = 1
+
+    private val newsViewModel: NewsController by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,22 +78,36 @@ class ListarFragment : Fragment() {
             loadNews(category, page)
             binding.swipeRefresh.isRefreshing = false
         }
+
+        newsViewModel.isLoading.observe(viewLifecycleOwner, Observer {
+            binding.progressBar.isVisible = it
+        })
+
+
+        newsViewModel.retNews.observe(viewLifecycleOwner, Observer {
+            binding.listRecyclerView.layoutManager =
+                LinearLayoutManager(binding.listRecyclerView.context)
+            binding.listRecyclerView.adapter = ListNewsAdapter(it) { getNewsItem(it) }
+        })
+
+        binding.buttonTest.setOnClickListener {
+            loadNews(category, 1)
+        }
     }
 
     fun loadNews(category: String, page: Int) {
         binding.listRecyclerView.clearAnimation()
-        binding.progressBar.visibility = View.VISIBLE
-
-        var keys = ArrayList<String>()
-        if (Adoptame.getPrefsDB()
-                .getBoolean(activity?.resources?.getResourceEntryName(R.string.catchnewsapi), false)
-        ) {
-            keys.add(R.string.catchnewsapi.toString())
-        }
-        if (Adoptame.getPrefsDB()
-                .getBoolean(activity?.resources?.getResourceEntryName(R.string.newsapi), false)
-        ) {
-            keys.add(R.string.newsapi.toString())
+        val db = Adoptame.getPrefseDB()
+        var keys = ArrayList<Int>()
+        val apis = listOf<Int>(
+            R.string.newsapi,
+            R.string.catchnewsapi
+        )
+        apis.forEach {
+            val check = resources.getResourceEntryName(it)
+            if (db.contains(check)) {
+                keys.add(it)
+            }
         }
 
         if (keys.isEmpty()) {
@@ -97,21 +118,7 @@ class ListarFragment : Fragment() {
             ).show()
             clear()
         } else {
-            lifecycleScope.launch(Dispatchers.Main)
-            {
-                val items = withContext(Dispatchers.IO) {
-                    NewsController().getNews(
-                        category,
-                        page,
-                        keys
-                    )
-                }
-
-                binding.listRecyclerView.layoutManager =
-                    LinearLayoutManager(binding.listRecyclerView.context)
-                binding.listRecyclerView.adapter = ListNewsAdapter(items) { getNewsItem(it) }
-                binding.progressBar.visibility = View.GONE
-            }
+            newsViewModel.getNews(category, page, keys)
         }
     }
 

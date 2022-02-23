@@ -10,10 +10,20 @@ import com.example.adoptame.database.NewsDataBase
 
 class Adoptame : Application() {
 
+    override fun onCreate() {
+        super.onCreate()
+        db = Room.databaseBuilder(applicationContext, NewsDataBase::class.java, "news_DB")
+            .build()
+
+        dbShare = applicationContext.getSharedPreferences("prefsData", Context.MODE_PRIVATE)
+
+        dbPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+    }
+
     companion object {
         private var db: NewsDataBase? = null
         private lateinit var dbShare: SharedPreferences
-        private lateinit var dbPreferences : SharedPreferences
+        private lateinit var dbPreferences: SharedPreferences
 
         fun getDatabase(): NewsDataBase {
             return db!!
@@ -23,18 +33,10 @@ class Adoptame : Application() {
             return dbShare
         }
 
-        fun getPrefsDB(): SharedPreferences {
+        fun getPrefseDB(): SharedPreferences {
             return dbPreferences
         }
 
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        db = Room.databaseBuilder(applicationContext, NewsDataBase::class.java, "news_DB")
-            .build()
-
-        dbShare = applicationContext.getSharedPreferences("prefsData", Context.MODE_PRIVATE)
-        dbPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-    }
 }

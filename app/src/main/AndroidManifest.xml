@@ -12,15 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Adoptame">
-
         <activity
             android:name=".presentacion.ItemActivity"
             android:exported="false" />
         <activity
-            android:name=".presentacion.LoginActivity"
+            android:name=".presentacion.PrincipalActivity"
             android:exported="false" />
         <activity
-            android:name=".presentacion.PrincipalActivity"
+            android:name=".presentacion.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

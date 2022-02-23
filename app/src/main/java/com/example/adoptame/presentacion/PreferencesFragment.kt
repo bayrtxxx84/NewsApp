@@ -2,7 +2,10 @@ package com.example.adoptame.presentacion
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.preference.*
+import androidx.preference.ListPreference
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import com.example.adoptame.R
 
 class PreferencesFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
@@ -34,6 +37,31 @@ class PreferencesFragment : PreferenceFragmentCompat(), Preference.OnPreferenceC
             preference?.summary = stringValue
         }
         return true
+    }
+
+    override fun onPreferenceTreeClick(preference: Preference): Boolean {
+        return when (preference.key) {
+            activity?.resources?.getResourceEntryName(R.string.catchnewsapi) -> {
+                Toast.makeText(
+                    this.context,
+                    "${resources.getString(R.string.catchnewsapi)} seleccionada",
+                    Toast.LENGTH_SHORT
+                ).show()
+                true
+            }
+            activity?.resources?.getResourceEntryName(R.string.newsapi) -> {
+                Toast.makeText(
+                    this.context,
+                    "${resources.getString(R.string.newsapi)} seleccionada",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+                true
+            }
+            else -> {
+                super.onPreferenceTreeClick(preference)
+            }
+        }
     }
 
 }

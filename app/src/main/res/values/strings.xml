@@ -7,7 +7,4 @@
     <string name="CarritoProductos">Noticias favoritas</string>
 
     <string name="build_version_preference">Version</string>
-    <string name="search">Buscar</string>
-    <string name="app_label">Buscar</string>
-    <string name="fab_content_desc">Buscar</string>
 </resources>
