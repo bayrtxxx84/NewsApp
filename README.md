@@ -28,3 +28,5 @@ Pueden descargarse el codigo fuente de este proyecto para que revisen lo aprendi
 - EnumClases
 - Companion Object
 - ContentProviders
+- Permisos en Android
+- Intents implicitos y explicitos (VIEW, SEND)
