@@ -26,6 +26,7 @@
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/drawable/ic_favorite_12.xml" value="0.1335" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/drawable/ic_favorite_24.xml" value="0.203" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/drawable/ic_favorite_border_12.xml" value="0.1335" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/drawable/ic_open_in_new_24.xml" value="0.2285" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/drawable/tab_layout_bg.xml" value="0.124" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/drawable/tab_rounded.xml" value="0.124" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/drawable/tab_selector.xml" value="0.124" />
@@ -34,7 +35,7 @@
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/activity_login.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/activity_principal.xml" value="0.1" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_borrar.xml" value="0.27708333333333335" />
-        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_fav_news.xml" value="0.17592592592592593" />
+        <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_fav_news.xml" value="0.2803539728365882" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_listar.xml" value="0.2803539728365882" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_one_news.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/torre/Documents/Repositorios/NewsApp/app/src/main/res/layout/fragment_preferences.xml" value="0.18425925925925926" />

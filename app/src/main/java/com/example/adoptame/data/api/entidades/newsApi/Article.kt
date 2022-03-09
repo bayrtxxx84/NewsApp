@@ -13,4 +13,4 @@ data class Article(
     val urlToImage: String
 )
 
-fun Article.toNewsEntity() = NewsEntity(0, author, title, description, urlToImage)
+fun Article.toNewsEntity() = NewsEntity(0, author, title, description, urlToImage, url)

@@ -14,8 +14,29 @@ import kotlinx.coroutines.launch
 
 class NewsController : ViewModel() {
 
+    val retFavNews = MutableLiveData<List<NewsEntity>>()
     val retNews = MutableLiveData<List<NewsEntity>>()
     val isLoading = MutableLiveData<Boolean>()
+
+    fun searchFavNews(query: String) {
+        viewModelScope.launch {
+            isLoading.postValue(true)
+            var items: ArrayList<NewsEntity> = ArrayList()
+            var items1: ArrayList<NewsEntity> = ArrayList()
+            items = NewsBL().getFavoritesNews() as ArrayList<NewsEntity>
+            if (!query.isNullOrBlank()) {
+                items.forEach {
+                    if (it.title?.lowercase()?.contains(query.lowercase()) == true) {
+                        items1.add(it)
+                    }
+                }
+                retFavNews.postValue(items1)
+            } else {
+                retFavNews.postValue(items)
+            }
+            isLoading.postValue(false)
+        }
+    }
 
     fun getNews(
         category: String,
@@ -39,7 +60,6 @@ class NewsController : ViewModel() {
                     }
                 }
             }
-            Log.d("TAG", "Tamaño:  ${ret.size}")
             retNews.postValue(ret)
             isLoading.postValue(false)
         }
