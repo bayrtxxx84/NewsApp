@@ -79,9 +79,9 @@ class ListarFragment : Fragment() {
             binding.swipeRefresh.isRefreshing = false
         }
 
-        newsViewModel.isLoading.observe(viewLifecycleOwner, Observer {
+        newsViewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressBar.isVisible = it
-        })
+        }
 
 
         newsViewModel.retNews.observe(viewLifecycleOwner, Observer {
@@ -89,15 +89,12 @@ class ListarFragment : Fragment() {
                 LinearLayoutManager(binding.listRecyclerView.context)
             binding.listRecyclerView.adapter = ListNewsAdapter(it) { getNewsItem(it) }
         })
-
-        binding.buttonTest.setOnClickListener {
-            loadNews(category, 1)
-        }
     }
 
     fun loadNews(category: String, page: Int) {
         binding.listRecyclerView.clearAnimation()
         val db = Adoptame.getPrefseDB()
+        println(db.all)
         var keys = ArrayList<Int>()
         val apis = listOf<Int>(
             R.string.newsapi,
@@ -105,9 +102,9 @@ class ListarFragment : Fragment() {
         )
         apis.forEach {
             val check = resources.getResourceEntryName(it)
-            if (db.contains(check)) {
+            //if (db.contains(check)) {
                 keys.add(it)
-            }
+            //}
         }
 
         if (keys.isEmpty()) {

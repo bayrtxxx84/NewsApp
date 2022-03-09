@@ -24,4 +24,4 @@ data class Article(
     val twitter_account: Any
 )
 
-fun Article.toNewsEntity() = NewsEntity(0, author, title, summary, media)
+fun Article.toNewsEntity() = NewsEntity(0, author, title, summary, media, link)
